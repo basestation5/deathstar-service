@@ -4,6 +4,8 @@ package com.thedeathstar.controller;
 import com.thedeathstar.model.DeathStars;
 import com.thedeathstar.model.DeathStar;
 import com.thedeathstar.repository.DeathStarRepository;
+import com.thedeathstar.repository.DeathStarRepositoryImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +20,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/deathstars")
 public class DeathStarController {
 
+    @Autowired
+    public DeathStarController(DeathStarRepository _repo)
+    {
+        repo = _repo;
+    }
+
+    private DeathStarRepository repo;
+
     @GetMapping("")
     public ResponseEntity<DeathStars> GetDeathstars(){
-
-        DeathStarRepository repo = new DeathStarRepository();
 
         return new ResponseEntity<>(repo.GetDeathstars(),HttpStatus.OK);
 
@@ -30,9 +38,7 @@ public class DeathStarController {
     @GetMapping("/{id}")
     public ResponseEntity<DeathStar> GetDeathstar(@PathVariable String id){
 
-        DeathStarRepository repo = new DeathStarRepository();
-
-        return new ResponseEntity<>(repo.GetDS1(),HttpStatus.OK);
+        return new ResponseEntity<>(repo.GetDeathstar(),HttpStatus.OK);
     }
 
     @PutMapping("/")

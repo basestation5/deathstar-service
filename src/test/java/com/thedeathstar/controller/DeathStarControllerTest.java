@@ -2,12 +2,21 @@ package com.thedeathstar.controller;
 
 import com.thedeathstar.model.DeathStar;
 import com.thedeathstar.model.DeathStars;
+import com.thedeathstar.repository.DeathStarRepositoryImpl;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by Jeremy on 6/26/17.
@@ -22,14 +31,28 @@ public class DeathStarControllerTest {
     @Test
     public void GetDeathStarAssertId() throws Exception {
 
-        DeathStarController controller = new DeathStarController();
-        ResponseEntity<DeathStar> re;
+        //Setup
+        DeathStar mockDs = new DeathStar();
+        mockDs.setId("DS-1");
+        mockDs.setName("First Death Star");
+        DeathStarRepositoryImpl mockRepo = mock(DeathStarRepositoryImpl.class);
+        when(mockRepo.GetDeathstar()).thenReturn(mockDs);
+
+        DeathStarController controller = new DeathStarController(mockRepo);
+        ResponseEntity<DeathStar> response;
         String id;
+        String name;
 
-        re = controller.GetDeathstar("Ds-1");
-        id = re.getBody().getId();
+        //Execute
 
-        Assert.isTrue(id == "DS-1", "DS-1 ");
+        response = controller.GetDeathstar("DS-1");
+        id = response.getBody().getId();
+        name = response.getBody().getName();
+
+        //Assert
+        Assert.isTrue(id == "DS-1", "DS-1 not found ");
+        Assert.isTrue(name == "First Death Star", "Name not First Death Star ");
+
 
 
     }
@@ -37,14 +60,37 @@ public class DeathStarControllerTest {
     @Test
     public void GetDeathStarAssertName() throws Exception {
 
-        DeathStarController controller = new DeathStarController();
-        ResponseEntity<DeathStar> re;
-        String name;
+        //Setup
 
-        re = controller.GetDeathstar("Ds-1");
-        name = re.getBody().getName();
+        DeathStar mockDeathStar = new DeathStar();
+        DeathStars mockDeathStars = new DeathStars();
+        List<DeathStar> list = new ArrayList<>();
 
-        Assert.isTrue(name == "First Death Star", "Name Not First Deathstar ");
+        mockDeathStar.setId("DS-1");
+        mockDeathStar.setName("First Death Star");
+
+        list.add(mockDeathStar);
+
+        mockDeathStars.setDeathStars(list);
+
+        DeathStarRepositoryImpl mockRepo = mock(DeathStarRepositoryImpl.class);
+        when(mockRepo.GetDeathstars()).thenReturn(mockDeathStars);
+
+        DeathStarController controller = new DeathStarController(mockRepo);
+        ResponseEntity<DeathStars> re;
+        List<DeathStar> responseStars;
+
+        //Execute
+
+        re = controller.GetDeathstars();
+        responseStars = re.getBody().getDeathstars();
+
+        DeathStar responseStar;
+
+        responseStar = responseStars.get(0);
+
+        //Assert
+        Assert.isTrue( responseStar.getName() == "First Death Star", "Name not First Death Star ");
 
     }
 

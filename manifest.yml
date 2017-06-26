@@ -1,0 +1,4 @@
+#cf push deathstar-service -p deathstar-service-1.0.0-SNAPSHOT.jar
+#applicaitons:
+#  name: deathstar-service
+#  path: target/deathstar-service-1.0.0-SNAPSHOT.jar

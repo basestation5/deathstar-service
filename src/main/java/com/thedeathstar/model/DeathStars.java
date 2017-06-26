@@ -11,7 +11,7 @@ public class DeathStars {
         return deathStars;
     }
 
-    public void setDeathstars(List<DeathStar> deathstars) {
+    public void setDeathStars(List<DeathStar> deathStars) {
         this.deathStars = deathStars;
     }
 
