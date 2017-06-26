@@ -63,31 +63,26 @@ public class DeathStarControllerTest {
         //Setup
 
         DeathStar mockDeathStar = new DeathStar();
-        DeathStars mockDeathStars = new DeathStars();
-        List<DeathStar> list = new ArrayList<>();
-
         mockDeathStar.setId("DS-1");
         mockDeathStar.setName("First Death Star");
-
+        
+        List<DeathStar> list = new ArrayList<>();
         list.add(mockDeathStar);
 
+        DeathStars mockDeathStars = new DeathStars();
         mockDeathStars.setDeathStars(list);
 
         DeathStarRepositoryImpl mockRepo = mock(DeathStarRepositoryImpl.class);
         when(mockRepo.GetDeathstars()).thenReturn(mockDeathStars);
 
         DeathStarController controller = new DeathStarController(mockRepo);
-        ResponseEntity<DeathStars> re;
-        List<DeathStar> responseStars;
 
         //Execute
 
-        re = controller.GetDeathstars();
-        responseStars = re.getBody().getDeathstars();
+        ResponseEntity<DeathStars> response = controller.GetDeathstars();
+        List<DeathStar> responseStars = response.getBody().getDeathstars();
 
-        DeathStar responseStar;
-
-        responseStar = responseStars.get(0);
+        DeathStar responseStar = responseStars.get(0);
 
         //Assert
         Assert.isTrue( responseStar.getName() == "First Death Star", "Name not First Death Star ");
