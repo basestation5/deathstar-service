@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
-
 import java.util.ArrayList;
 import java.util.List;
 import static org.mockito.Mockito.mock;
@@ -23,7 +22,7 @@ public class DeathStarControllerTest {
     }
 
     @Test
-    public void GetDeathStarAssertId() throws Exception {
+    public void GetDeathStarAssertIdAndName() throws Exception {
 
         //Setup
         DeathStar mockDs = new DeathStar();
@@ -52,7 +51,7 @@ public class DeathStarControllerTest {
     }
 
     @Test
-    public void GetDeathStarAssertName() throws Exception {
+    public void GetDeathStarsAssertFirstElementName() throws Exception {
 
         //Setup
 
