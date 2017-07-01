@@ -1,9 +1,7 @@
 package com.thedeathstar.repository;
 
 import com.thedeathstar.model.DeathStar;
-import com.thedeathstar.model.DeathStars;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +9,7 @@ import java.util.List;
  */
 public interface DeathStarRepository {
 
-    DeathStars GetDeathstars();
+    List<DeathStar> GetDeathstars();
 
     DeathStar GetDeathstar();
 

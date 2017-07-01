@@ -1,7 +1,8 @@
 package com.thedeathstar.repository;
 
 import com.thedeathstar.model.DeathStar;
-import com.thedeathstar.model.DeathStars;
+//import com.thedeathstar.model.DeathStars;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -13,18 +14,23 @@ import java.util.List;
 @Repository
 public  class DeathStarRepositoryImpl implements DeathStarRepository{
 
-    public DeathStars GetDeathstars() {
+    @Autowired
+    public DeathStarRepositoryImpl(ShipRepositoryImpl _shipRepo)
+    {
+        shipRepo = _shipRepo;
+    }
 
-        DeathStars stars = new DeathStars();
+    private ShipRepositoryImpl shipRepo;
+
+
+    public List<DeathStar> GetDeathstars() {
 
         List<DeathStar> list = new ArrayList<>();
 
         list.add(GetDS1());
         list.add(GetDS2());
 
-        stars.setDeathStars(list);
-
-        return stars;
+        return list;
     }
 
     public DeathStar GetDeathstar() {
@@ -38,7 +44,7 @@ public  class DeathStarRepositoryImpl implements DeathStarRepository{
 
         ds1.setId("DS-1");
         ds1.setName("First Death Star");
-
+        ds1.setShips(shipRepo.GetShips());
         return ds1;
     }
 

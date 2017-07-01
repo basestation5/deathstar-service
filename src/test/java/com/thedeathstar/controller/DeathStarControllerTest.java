@@ -1,20 +1,14 @@
 package com.thedeathstar.controller;
 
 import com.thedeathstar.model.DeathStar;
-import com.thedeathstar.model.DeathStars;
 import com.thedeathstar.repository.DeathStarRepositoryImpl;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -69,18 +63,15 @@ public class DeathStarControllerTest {
         List<DeathStar> list = new ArrayList<>();
         list.add(mockDeathStar);
 
-        DeathStars mockDeathStars = new DeathStars();
-        mockDeathStars.setDeathStars(list);
-
         DeathStarRepositoryImpl mockRepo = mock(DeathStarRepositoryImpl.class);
-        when(mockRepo.GetDeathstars()).thenReturn(mockDeathStars);
+        when(mockRepo.GetDeathstars()).thenReturn(list);
 
         DeathStarController controller = new DeathStarController(mockRepo);
 
         //Execute
 
-        ResponseEntity<DeathStars> response = controller.GetDeathstars();
-        List<DeathStar> responseStars = response.getBody().getDeathstars();
+        ResponseEntity<List<DeathStar>> response = controller.GetDeathstars();
+        List<DeathStar> responseStars = response.getBody();
 
         DeathStar responseStar = responseStars.get(0);
 

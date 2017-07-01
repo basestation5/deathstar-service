@@ -1,7 +1,7 @@
 package com.thedeathstar.controller;
 
 
-import com.thedeathstar.model.DeathStars;
+//import com.thedeathstar.model.DeathStars;
 import com.thedeathstar.model.DeathStar;
 import com.thedeathstar.repository.DeathStarRepository;
 import com.thedeathstar.repository.DeathStarRepositoryImpl;
@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -29,7 +31,7 @@ public class DeathStarController {
     private DeathStarRepository repo;
 
     @GetMapping("")
-    public ResponseEntity<DeathStars> GetDeathstars(){
+    public ResponseEntity<List<DeathStar>> GetDeathstars(){
 
         return new ResponseEntity<>(repo.GetDeathstars(),HttpStatus.OK);
 
