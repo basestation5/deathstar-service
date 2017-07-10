@@ -1,20 +1,13 @@
 package com.thedeathstar.controller;
 
 import com.thedeathstar.model.DeathStar;
-import com.thedeathstar.model.DeathStars;
 import com.thedeathstar.repository.DeathStarRepositoryImpl;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -29,7 +22,7 @@ public class DeathStarControllerTest {
     }
 
     @Test
-    public void GetDeathStarAssertId() throws Exception {
+    public void GetDeathStarAssertIdAndName() throws Exception {
 
         //Setup
         DeathStar mockDs = new DeathStar();
@@ -58,36 +51,28 @@ public class DeathStarControllerTest {
     }
 
     @Test
-    public void GetDeathStarAssertName() throws Exception {
+    public void GetDeathStarsAssertFirstElementName() throws Exception {
 
         //Setup
 
         DeathStar mockDeathStar = new DeathStar();
-        DeathStars mockDeathStars = new DeathStars();
-        List<DeathStar> list = new ArrayList<>();
-
         mockDeathStar.setId("DS-1");
         mockDeathStar.setName("First Death Star");
-
+        
+        List<DeathStar> list = new ArrayList<>();
         list.add(mockDeathStar);
 
-        mockDeathStars.setDeathStars(list);
-
         DeathStarRepositoryImpl mockRepo = mock(DeathStarRepositoryImpl.class);
-        when(mockRepo.GetDeathstars()).thenReturn(mockDeathStars);
+        when(mockRepo.GetDeathstars()).thenReturn(list);
 
         DeathStarController controller = new DeathStarController(mockRepo);
-        ResponseEntity<DeathStars> re;
-        List<DeathStar> responseStars;
 
         //Execute
 
-        re = controller.GetDeathstars();
-        responseStars = re.getBody().getDeathstars();
+        ResponseEntity<List<DeathStar>> response = controller.GetDeathstars();
+        List<DeathStar> responseStars = response.getBody();
 
-        DeathStar responseStar;
-
-        responseStar = responseStars.get(0);
+        DeathStar responseStar = responseStars.get(0);
 
         //Assert
         Assert.isTrue( responseStar.getName() == "First Death Star", "Name not First Death Star ");
