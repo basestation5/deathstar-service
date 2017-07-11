@@ -1,5 +1,6 @@
-package com.thedeathstar.controller;
+package com.thedeathstar.unit.controller;
 
+import com.thedeathstar.controller.DeathStarController;
 import com.thedeathstar.model.DeathStar;
 import com.thedeathstar.model.DeathStars;
 import com.thedeathstar.repository.DeathStarRepositoryImpl;

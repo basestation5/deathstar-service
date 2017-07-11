@@ -10,4 +10,6 @@ import java.util.List;
 public interface ShipsRepository {
 
     List<Ship> GetShips();
+
+    Ship GetShip(int id);
 }

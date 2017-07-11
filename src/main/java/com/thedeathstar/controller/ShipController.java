@@ -33,4 +33,11 @@ public class ShipController {
         return new ResponseEntity<>(repo.GetShips(), HttpStatus.OK);
 
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Ship> GetShip(int id){
+
+        return new ResponseEntity<>(repo.GetShip(id), HttpStatus.OK);
+
+    }
 }

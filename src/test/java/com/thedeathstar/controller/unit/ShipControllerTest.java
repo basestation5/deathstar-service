@@ -1,5 +1,6 @@
-package com.thedeathstar.controller;
+package com.thedeathstar.unit.controller;
 
+import com.thedeathstar.controller.ShipController;
 import com.thedeathstar.model.Ship;
 import com.thedeathstar.repository.ShipRepositoryImpl;
 import org.junit.Test;
