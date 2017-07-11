@@ -52,10 +52,11 @@ public class DeathStarsIntegrationTests {
         ShipRepositoryImpl shipRepo = new ShipRepositoryImpl();
         ShipController controller = new ShipController(shipRepo);
 
-        Ship ship = controller.GetShip(12).getBody();
+        Ship ship = controller.GetShip(3211).getBody();
         String captainName = ship.getCaptain();
 
-        //Assert.assertTrue(captainName == "Mitch StarScreamer");
+        assertThat("Wrong Captain Name", captainName.equals("Mitch StarScreamer"));
+
 
     }
 
