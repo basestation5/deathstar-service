@@ -1,6 +1,7 @@
 package com.thedeathstar.repository;
 
 import com.thedeathstar.model.DeathStar;
+import com.thedeathstar.model.DeathStars;
 
 import java.util.List;
 

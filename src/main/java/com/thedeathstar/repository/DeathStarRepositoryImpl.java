@@ -2,6 +2,8 @@ package com.thedeathstar.repository;
 
 import com.thedeathstar.model.DeathStar;
 //import com.thedeathstar.model.DeathStars;
+import com.thedeathstar.model.DeathStars;
+import com.thedeathstar.model.Ships;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,9 +28,12 @@ public  class DeathStarRepositoryImpl implements DeathStarRepository{
     public List<DeathStar> GetDeathstars() {
 
         List<DeathStar> list = new ArrayList<>();
+        //DeathStars deathstars = new DeathStars();
 
         list.add(GetDS1());
         list.add(GetDS2());
+
+        //deathstars.setDeathStars(list);
 
         return list;
     }

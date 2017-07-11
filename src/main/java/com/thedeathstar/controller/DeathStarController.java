@@ -3,6 +3,7 @@ package com.thedeathstar.controller;
 
 //import com.thedeathstar.model.DeathStars;
 import com.thedeathstar.model.DeathStar;
+import com.thedeathstar.model.DeathStars;
 import com.thedeathstar.repository.DeathStarRepository;
 import com.thedeathstar.repository.DeathStarRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,13 @@ public class DeathStarController {
     private DeathStarRepository repo;
 
     @GetMapping("")
-    public ResponseEntity<List<DeathStar>> GetDeathstars(){
+    public ResponseEntity<DeathStars> GetDeathstars(){
 
-        return new ResponseEntity<>(repo.GetDeathstars(),HttpStatus.OK);
+         DeathStars deathStars = new DeathStars();
+
+         deathStars.setDeathStars(repo.GetDeathstars());
+
+        return new ResponseEntity<>( deathStars,HttpStatus.OK);
 
     }
 

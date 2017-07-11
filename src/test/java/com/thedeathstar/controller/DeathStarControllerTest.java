@@ -1,6 +1,7 @@
 package com.thedeathstar.controller;
 
 import com.thedeathstar.model.DeathStar;
+import com.thedeathstar.model.DeathStars;
 import com.thedeathstar.repository.DeathStarRepositoryImpl;
 import org.junit.Before;
 import org.junit.Test;
@@ -69,10 +70,10 @@ public class DeathStarControllerTest {
 
         //Execute
 
-        ResponseEntity<List<DeathStar>> response = controller.GetDeathstars();
-        List<DeathStar> responseStars = response.getBody();
+        ResponseEntity<DeathStars> response = controller.GetDeathstars();
+        DeathStars responseStars = response.getBody();
 
-        DeathStar responseStar = responseStars.get(0);
+        DeathStar responseStar = responseStars.getDeathStars().get(0);
 
         //Assert
         Assert.isTrue( responseStar.getName() == "First Death Star", "Name not First Death Star ");

@@ -1,6 +1,7 @@
 package com.thedeathstar.repository;
 
 import com.thedeathstar.model.Ship;
+import com.thedeathstar.model.Ships;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -11,11 +12,11 @@ import java.util.List;
  */
 
 @Repository
-public class ShipRepositoryImpl {
+public class ShipRepositoryImpl implements ShipsRepository{
 
     public List<Ship> GetShips(){
 
-        List<Ship> ships = new ArrayList();
+        List<Ship> shipsArray = new ArrayList();
         Ship ship = new Ship();
 
         ship.setId(3211);
@@ -23,9 +24,9 @@ public class ShipRepositoryImpl {
         ship.setType("Star Destroyer");
         ship.setCaptain("Mitch StarScreamer");
 
-        ships.add(ship);
+        shipsArray.add(ship);
 
-        return ships;
+        return shipsArray;
 
     }
 
