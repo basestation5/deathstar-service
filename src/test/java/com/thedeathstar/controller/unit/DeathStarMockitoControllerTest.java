@@ -5,6 +5,7 @@ import com.thedeathstar.model.DeathStar;
 import com.thedeathstar.model.DeathStars;
 import com.thedeathstar.repository.DeathStarRepositoryImpl;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
@@ -16,7 +17,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by Jeremy on 6/26/17.
  */
-public class DeathStarControllerTest {
+public class DeathStarMockitoControllerTest {
 
     @Before
     public void setUp() throws Exception {
@@ -51,6 +52,7 @@ public class DeathStarControllerTest {
 
 
     }
+
 
     @Test
     public void GetDeathStarsAssertFirstElementName() throws Exception {

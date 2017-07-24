@@ -11,6 +11,11 @@ public class Ship {
     private int id;
     private String captain;
     private String type;
+    private String description;
+
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
 
     public int getId() {
         return id;

@@ -3,6 +3,7 @@ package com.thedeathstar.unit.controller;
 import com.thedeathstar.controller.ShipController;
 import com.thedeathstar.model.Ship;
 import com.thedeathstar.repository.ShipRepositoryImpl;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
@@ -14,7 +15,10 @@ import static org.mockito.Mockito.when;
 /**
  * Created by Jeremy on 6/30/17.
  */
-public class ShipControllerTest {
+
+
+public class ShipMockitoControllerTest {
+
 
     @Test
     public void GetShipsAssertName()

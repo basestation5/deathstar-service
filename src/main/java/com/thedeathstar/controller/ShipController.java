@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,7 +36,7 @@ public class ShipController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Ship> GetShip(int id){
+    public ResponseEntity<Ship> GetShip(@PathVariable("id") int id){
 
         return new ResponseEntity<>(repo.GetShip(id), HttpStatus.OK);
 

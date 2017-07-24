@@ -1,12 +1,11 @@
 package com.thedeathstar.repository;
 
-import com.thedeathstar.model.DeathStars;
 import com.thedeathstar.model.Ship;
-import com.thedeathstar.model.Ships;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -16,28 +15,32 @@ import java.util.List;
 @Repository
 public class ShipRepositoryImpl implements ShipsRepository{
 
+    @Value("${shipservice.url}")
+    private String url = "http://localhost:8091";
+
     public List<Ship> GetShips(){
 
-        List<Ship> shipsArray = new ArrayList();
-        Ship ship = new Ship();
+        String shipUrl = url + "/ships/";
 
-        ship.setId(3211);
-        ship.setName("GR-34");
-        ship.setType("Star Destroyer");
-        ship.setCaptain("Mitch StarScreamer");
+        RestTemplate restTemplate = new RestTemplate();
 
-        shipsArray.add(ship);
+        Ship[] shipsArray = restTemplate.getForObject(shipUrl, Ship[].class);
 
-        return shipsArray;
+        List<Ship> shipList = Arrays.asList(shipsArray);
+
+        return shipList ;
 
     }
 
+    //In this use case, for whatever reason I wanted to get ships from another service.
+    //This may break some microservice rules...but this is a demo
     public Ship GetShip(int id){
 
-        String url = "http://localhost:8091/ships";
-
         RestTemplate restTemplate = new RestTemplate();
-        Ship ship = restTemplate.getForObject(url, Ship.class);
+
+        String shipUrl = url + "/ships/" + id;
+
+        Ship ship = restTemplate.getForObject(shipUrl, Ship.class);
 
         return ship;
 
